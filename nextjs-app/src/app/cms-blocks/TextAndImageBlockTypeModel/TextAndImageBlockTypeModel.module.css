@@ -1,0 +1,37 @@
+.container {
+  background-color: #f9f9f9;
+  width: 100%;
+  width: calc(100% - 20px);
+}
+
+.full {
+  width: calc(100% - 20px);
+}
+
+.narrow {
+  width: calc((100% - 30px) / 3);
+}
+
+.wide {
+  width: calc((100% - 15px) / 2);
+}
+
+
+
+.heading {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading > h2 {
+  color: white;
+  font-size: 32px;
+  text-shadow: 0 0 10px #222;
+}
+
+.body {
+  padding: 10px;
+}
