@@ -43,6 +43,12 @@ namespace Models.PageTypes
         typeof(TextAndImageBlockTypeModel))]
     public virtual ContentArea? ContentBlocks { get; set; }
 
+    [CultureSpecific]
+    [Display(
+      Name = "Just a secret Api Key",
+      Order = 9000)]
+    public virtual string? Private_ApiKey { get; set; }
+
     [ScaffoldColumn(false)]
     public override string ComponentName => "StandardPage";
   }

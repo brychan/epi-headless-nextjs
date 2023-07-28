@@ -10,8 +10,8 @@ This project is a decoupled Next.js application that leverages the Optimizely He
 - Can use CMS DisplayOptions to determine the layouts.
 
 ## To Do's
-- (CMS) Add filtering of properties.
-- (CMS) Add filtering of private pages.
+- ~~(CMS) Add filtering of properties.~~
+- ~~(CMS) Add filtering of private pages.~~
 - (NextJs) Syncronize Typescript types with CMS models.
 - (NextJs + CMS) Add On-page editing to the solution.
 

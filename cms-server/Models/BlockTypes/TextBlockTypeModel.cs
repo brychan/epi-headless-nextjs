@@ -29,5 +29,11 @@ namespace Models.BlockTypes
         Name = "Block link",
         Order = 40)]
     public virtual LinkItem Link { get; set; }
+
+    [CultureSpecific]
+    [Display(
+      Name = "Just a secret",
+      Order = 9000)]
+    public virtual string? Private_BlockTest { get; set; }
   }
 }

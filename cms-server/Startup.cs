@@ -34,6 +34,8 @@ public class Startup
         .ConfigureForExternalTemplates()
         .Configure<ExternalApplicationOptions>(options => options.OptimizeForDelivery = true);
 
+    //services.AddHttpContextAccessor();
+
     services.Configure<DisplayOptions>(options =>
       {
         options

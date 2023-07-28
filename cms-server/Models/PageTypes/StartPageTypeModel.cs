@@ -51,6 +51,12 @@ namespace Models.PageTypes
       Order = 500)]
     public virtual LinkItemCollection? MenuLinks { get; set; }
 
+    [CultureSpecific]
+    [Display(
+      Name = "Just a secret property",
+      Order = 9000)]
+    public virtual string? Private_Secret { get; set; }
+
     [ScaffoldColumn(false)]
     public override string ComponentName => "StartPage";
   }
