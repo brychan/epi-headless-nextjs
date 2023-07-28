@@ -6,10 +6,8 @@ import blocksList from "./blocksList";
 
 export const ContentArea = ({
   model,
-  name,
 }: {
   model: ContentAreaType;
-  name: string;
 }) => {
   if (!model) return null;
   const blocks = (model.expandedValue as ContentData[])?.map((block, index) => {
@@ -18,6 +16,5 @@ export const ContentArea = ({
       <Block key={index} model={block} value={model.value[index]} />
     ) : null;
   });
-
   return blocks;
 };

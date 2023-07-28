@@ -13,8 +13,13 @@ This project is a decoupled Next.js application that leverages the Optimizely He
 - ~~(CMS) Add filtering of properties.~~
 - ~~(CMS) Add filtering of private pages.~~
 - (NextJs) Syncronize Typescript types with CMS models.
-- (NextJs + CMS) Add On-page editing to the solution.
-
+- ~~(NextJs + CMS) Add On-page editing to the solution.~~
+    - Possible to view and edit the site on Edit mode, some drawbacks are:
+        - Changes cannot be previewed, since the CD Api only shows the published version.
+        - It's not possible to provide a root Context that stores if page is in edit mode. Components are rendered by NodeJS, so the SPA solution of using
+            document.location.search.includes("epieditmode") won't work.
+    - https://docs.developers.optimizely.com/content-management-system/v1.5.0-content-delivery-api/docs/customizing-content-delivery-api-for-edit-view
+    
 ## Getting Started
 - Clone this repository.
 - Install project dependencies in "/nextjs-app" using npm install.

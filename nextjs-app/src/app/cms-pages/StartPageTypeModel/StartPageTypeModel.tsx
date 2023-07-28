@@ -14,17 +14,17 @@ export default async function StartPageTypeModel({
   model: StartPageType;
 }) {
   if (!model) return <div>Error: No model</div>;
-
   return (
+    // For OPE use data-epi-edit={"ContentBlocks"} on wrapping div
     <main>
       <HeroElement heading={model.heroHeading?.value} backgroundImage={model.heroBackgroundImage?.value?.url}/>
       <div>
-        <Suspense fallback={<Loading />}>
+        {/* <Suspense fallback={<Loading />}>
           <CoinDeskData />
-        </Suspense>
+        </Suspense> */}
       </div>
       <div className={styles.contentArea}>
-        <ContentArea model={model.contentBlocks} name="ContentBlocks" />
+        <ContentArea model={model.contentBlocks} />
       </div>
     </main>
   );

@@ -1,3 +1,4 @@
+import Script from "next/script";
 import pageList from "../cms-pages/pageList";
 
 /*
@@ -42,7 +43,15 @@ export default async function Page({ params }: { params: { path: string[] } }) {
   if (model.contentType?.length) {
     const componentName = model.contentType[1];
     const Page = pageList[componentName];
-    return <Page model={model} />;
+    return (
+      <>
+        <Page model={model} />
+        {/*
+          For OPE to work: 
+          <Script src="https://localhost:5000/episerver/cms/latest/clientresources/communicationinjector.js" /> 
+        */}
+      </>
+    );
   }
 
   return <div>There was an error identifying the page</div>;
