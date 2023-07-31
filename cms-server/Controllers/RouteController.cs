@@ -1,24 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using EPiServer;
-using EPiServer.Core;
+﻿using EPiServer.OpenIDConnect;
 using EPiServer.Web.Routing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.PageTypes;
-using System.Collections.Generic;
-using System.Text.Json;
-using EPiServer.Core.Internal;
-using EPiServer.Filters;
-using SixLabors.ImageSharp;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAbstraction.Internal;
-using EPiServer.Globalization;
-using EPiServer.Framework.Localization;
-using EPiServer.ServiceLocation;
-using EPiServer.Cms.Shell;
+using OpenIddict.Validation.AspNetCore;
 
 namespace Controllers
 {
+
   [Route("routes")]
   [ApiController]
   public class RouteController : ControllerBase
@@ -37,6 +25,7 @@ namespace Controllers
       _contentRepository = contentRepository;
     }
 
+    //[Authorize(OpenIDConnectOptionsDefaults.AuthenticationScheme)]
     [HttpGet("get")]
     public IActionResult GetRoutes()
     {

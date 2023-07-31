@@ -5,6 +5,9 @@ using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using EPiServer.Web;
+using EPiServer.OpenIDConnect;
+using EPiServer.ContentDefinitionsApi;
+using EPiServer.ContentApi.Cms;
 
 namespace back;
 
@@ -44,12 +47,32 @@ public class Startup
         .Add("narrow", "/displayoptions/narrow", "OneThirdWidth", "OneThirdWidth");
       });
 
-    services.AddContentDefinitionsApi();
-    services.AddContentDeliveryApi(options =>
-    {
-      options.SiteDefinitionApiEnabled = true;
-    })
-    .WithFriendlyUrl();
+
+    services.AddOpenIDConnect<ApplicationUser>(
+       useDevelopmentCertificate: true,
+       signingCertificate: null,
+       encryptionCertificate: null,
+       createSchema: true,
+       options =>
+       {
+         options.Applications.Add(new OpenIDConnectApplication
+         {
+           ClientId = "cli",
+           ClientSecret = "cli",
+           Scopes = { ContentDefinitionsApiOptionsDefaults.Scope, ContentDeliveryApiOptionsDefaults.Scope }, // Default scope from Content Definitions API
+         });
+       });
+
+    // Add Delivery API to Application
+    services
+        .AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options => {
+          options.SiteDefinitionApiEnabled = true;
+          options.DisableScopeValidation = false;
+        })
+        .WithSiteBasedCors();
+
+    services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options => { });
+    //.WithFriendlyUrl();
   }
 
   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

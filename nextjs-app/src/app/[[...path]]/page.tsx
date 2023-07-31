@@ -1,6 +1,7 @@
 import Script from "next/script";
 import pageList from "../cms-pages/pageList";
-
+import { Issuer, TokenSet } from "openid-client";
+import authenticate from "../authService";
 /*
  * generateStaticParams returns an array with all routes that should be
  * pre-rendered in build time.
@@ -8,8 +9,15 @@ import pageList from "../cms-pages/pageList";
  */
 
 export async function generateStaticParams() {
+  const grant = await authenticate();
+
+  if (!grant) return [];
+
   const pages = await fetch("https://localhost:5000/routes/get", {
     cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${(grant as TokenSet).access_token}`,
+    },
   }).then((res) => res.json());
 
   return pages.map((page: any) => ({
@@ -18,9 +26,20 @@ export async function generateStaticParams() {
 }
 
 async function getData(route: string) {
+  const grant = await authenticate();
+
+  if (!grant) {
+    throw new Error("Failed to authenticate");
+  }
+
   const res = await fetch(
     `https://localhost:5000/api/episerver/v3.0/content?contentUrl=${route}&matchExact=true&expand=*`,
-    { next: { revalidate: 3600 } }
+    {
+      next: { revalidate: 3600 },
+      headers: {
+        Authorization: `Bearer ${(grant as TokenSet).access_token}`,
+      },
+    }
   );
 
   if (!res.ok) {

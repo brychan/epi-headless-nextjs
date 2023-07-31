@@ -19,6 +19,7 @@
     <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.8.1" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.8.1" />
     <PackageReference Include="EPiServer.Hosting" Version="12.15.1" />
+    <PackageReference Include="EPiServer.OpenIDConnect" Version="3.8.1" />
   </ItemGroup>
   
   <ItemGroup>

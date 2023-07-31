@@ -12,6 +12,7 @@ This project is a decoupled Next.js application that leverages the Optimizely He
 ## To Do's
 - ~~(CMS) Add filtering of properties.~~
 - ~~(CMS) Add filtering of private pages.~~
+- ~~(NextJs + CMS) Add Open Id machine-to-machine authentication.~~
 - (NextJs) Syncronize Typescript types with CMS models.
 - ~~(NextJs + CMS) Add On-page editing to the solution.~~
     - Possible to view and edit the site on Edit mode, some drawbacks are:
